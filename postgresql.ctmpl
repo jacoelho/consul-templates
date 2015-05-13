@@ -1,0 +1,8 @@
+{{ $env := env "ENVIRONMENT"  }}
+{{ $ms  := env "MICROSERVICE" }}
+{{ $keyname := printf "%s/%s/postgresql" $env $ms}}
+{{$env}}:
+  adapter: postgresql
+  encoding: unicode
+  {{ range ls $keyname }}
+  {{.Key}}: {{.Value}}{{end}}

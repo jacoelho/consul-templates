@@ -1,0 +1,5 @@
+{{ $env := env "ENVIRONMENT"  }}
+{{ $ms  := env "MICROSERVICE" }}
+{{ $keyname := printf "%s/%s/config" $env $ms}}
+{{$env}}:{{ range ls $keyname }}
+  {{.Key}}: {{.Value}}{{end}}

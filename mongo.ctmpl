@@ -1,0 +1,20 @@
+{{ $env := env "ENVIRONMENT"  }}
+{{ $ms  := env "MICROSERVICE" }}
+{{ $keyname := printf "%s/%s/mongo" $env $ms}}
+{{ $username := printf "%s/%s" $keyname "username" }}
+{{ $database := printf "%s/%s" $keyname "database" }}
+{{ $password := printf "%s/%s" $keyname "password" }}
+{{ $hosts := printf "%s/%s" $keyname "hosts" }}
+{{$env}}:
+  sessions:
+    default:
+      database: {{key $database}}
+      username: {{key $username}}
+      password: {{key $password}}
+      hosts:
+        {{key $hosts}}
+      options:
+        ssl: true
+  options:
+    use_utc: true
+    raise_not_found_error: false
